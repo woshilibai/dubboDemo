@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!--指定应用名称，即注册到zk服务注册中心的服务名称-->
+    <dubbo:application name="helloServiceProvider"/>
+    <!--服务注册中心地址,需要先启动zk-->
+    <dubbo:registry address="zookeeper://localhost:2181/"/>
+    <!--接口服务真正实现方-->
+    <dubbo:service interface="com.ifunyoung.api.HelloService" ref="helloService"/>
+    <!--普通bean注册-->
+    <bean id="helloService" class="com.ifunyoung.provider.HelloServiceImpl"/>
+</beans>
